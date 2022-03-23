@@ -50,6 +50,11 @@ export type StockItem = {
 }
 
 export type AppibaseProductAttributes = {
+  
+}
+
+export type AppibaseProduct = {
+  id: string
   name: string
   description: string
   sku: string
@@ -60,11 +65,6 @@ export type AppibaseProductAttributes = {
   is_parent: boolean
   active: boolean
   livemode: boolean
-}
-
-export type AppibaseProduct = {
-  id: string
-  attributes: AppibaseProductAttributes
   parent?: AppibaseProduct
   children?: AppibaseProduct[]
   variations?: Variation[]

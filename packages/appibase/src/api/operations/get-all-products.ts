@@ -7,11 +7,11 @@ import type { AppibaseProduct, AppibasePrice } from '../../types'
 const normalizeProduct = (product: AppibaseProduct): Product => {
   return {
     id: product.id,
-    name: product.attributes.name || "New name",
-    description: product.attributes.description || "Description",
-    images: product.attributes.image_urls.map(i => <ProductImage> { url: i }),
+    name: product.name || "New name",
+    description: product.description || "Description",
+    images: product.image_urls.map(i => <ProductImage> { url: i }),
     variants: [],
-    price: { value: 22.22 },
+    price: { value: 22.22, retailPrice: 22.23, salePrice: 23.23, listPrice: 24.24, currencyCode: 'eur' },
     options: []
   }
 }
@@ -33,7 +33,7 @@ export default function getAllProductsOperation({
     const { fetch } = commerce.getConfig(config)
 
     
-    const { data: fetchedProducts} =  await fetch('/products?filter[is_parent_true]=true&filter[name_cont_all]=shirt,special');
+    const { data: fetchedProducts} =  await fetch('/products?filter[is_parent_true]=false&filter[name_cont_all]=shirt,special&include=prices');
 
     const products = fetchedProducts.map(p => <Product> normalizeProduct(p))
       

@@ -1,5 +1,6 @@
 import { FetcherError } from '@vercel/commerce/utils/errors'
 import type { GraphQLFetcher } from '@vercel/commerce/api'
+import JsonApiResponseConverter from 'json-api-response-converter'
 import URI from 'urijs'
 import type { LocalConfig } from '../index'
 import fetch from './fetch'
@@ -31,7 +32,10 @@ const fetchApi: (getConfig: () => LocalConfig) => GraphQLFetcher =
       })
     }
 
-    return { data: json.data, res }
+    const data = new JsonApiResponseConverter(json).formattedResponse
+    console.log(data);
+    
+    return { data, res }
   }
 
 export default fetchApi

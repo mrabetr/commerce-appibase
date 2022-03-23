@@ -50,6 +50,7 @@
     "@vercel/commerce": "^0.0.1",
     "@vercel/fetch": "^6.1.1",
     "js-cookies": "^1.0.4",
+    "json-api-response-converter": "^1.6.0",
     "urijs": "^1.19.10"
   },
   "peerDependencies": {
