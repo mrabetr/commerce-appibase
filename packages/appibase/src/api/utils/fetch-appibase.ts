@@ -1,20 +1,17 @@
 import { FetcherError } from '@vercel/commerce/utils/errors'
 import type { GraphQLFetcher } from '@vercel/commerce/api'
 import Kitsu from "kitsu";
-
 import type { LocalConfig } from '../index'
-import fetch from './fetch'
 import { API_URL } from '../../const'
-const api = new Kitsu()
+import { GetAccessToken } from './access-token'
 
 const fetchApi: (getConfig: () => LocalConfig) => GraphQLFetcher =
   (getConfig) =>
   async (query: string, { variables, preview } = {}, fetchOptions) => {
     const config = getConfig()
-
-
+    
     const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
-    api.headers.Authorization = "Bearer RisXi4Jy_oOSIqwoQ8-1rOhZhMZy5HC_uX1W01m5JCo"
+    api.headers.Authorization = `Bearer ${await GetAccessToken()}`
     
     const res = await api.get(query)
 

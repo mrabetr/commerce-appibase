@@ -5,8 +5,8 @@ import type { AppibaseProduct } from '../../types'
 const NormalizeProduct = (product: AppibaseProduct): Product => {
   return {
     id: product.id,
-    name: product.name || "New name",
-    description: product.description || "Description",
+    name: product.name,
+    description: product.description,
     images: product.image_urls.map(i => <ProductImage> { url: i }),
     sku: product.sku,
     slug: product.sku,
