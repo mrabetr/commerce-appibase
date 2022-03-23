@@ -8,6 +8,9 @@ export const handler: SWRHook<any> = {
   },
   async fetcher({ input, options, fetch }) {},
   useHook: () => () => {
+
+    console.log('SEARCH PRODUCTS');
+    
     return {
       data: {
         products: [],

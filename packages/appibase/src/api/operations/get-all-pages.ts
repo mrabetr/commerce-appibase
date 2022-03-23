@@ -11,6 +11,8 @@ export default function getAllPagesOperation() {
     config?: Partial<LocalConfig>
     preview?: boolean
   }): Promise<GetAllPagesResult> {
+    console.log('GETTING ALL PAGES');
+
     return Promise.resolve({
       pages: [],
     })

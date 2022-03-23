@@ -2,11 +2,11 @@ import {
   getCommerceProvider,
   useCommerce as useCoreCommerce,
 } from '@vercel/commerce'
-import { localProvider, LocalProvider } from './provider'
+import { appibaseProvider, AppibaseProvider } from './provider'
 
-export { localProvider }
-export type { LocalProvider }
+export { appibaseProvider }
+export type { AppibaseProvider }
 
-export const CommerceProvider = getCommerceProvider(localProvider)
+export const CommerceProvider = getCommerceProvider(appibaseProvider)
 
-export const useCommerce = () => useCoreCommerce<LocalProvider>()
+export const useCommerce = () => useCoreCommerce<AppibaseProvider>()

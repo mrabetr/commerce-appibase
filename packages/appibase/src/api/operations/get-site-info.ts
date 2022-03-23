@@ -20,6 +20,8 @@ export default function getSiteInfoOperation({}: OperationContext<any>) {
     config?: Partial<LocalConfig>
     preview?: boolean
   } = {}): Promise<GetSiteInfoResult> {
+    console.log('GETTING SITE INFO');
+
     return Promise.resolve({
       categories: [
         {

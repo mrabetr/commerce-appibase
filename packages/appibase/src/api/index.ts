@@ -1,6 +1,7 @@
 import type { CommerceAPI, CommerceAPIConfig } from '@vercel/commerce/api'
 import { getCommerceApi as commerceApi } from '@vercel/commerce/api'
-import createFetcher from './utils/fetch-local'
+import createFetcher from './utils/fetch-appibase'
+import { API_URL } from '../const'
 
 import getAllPages from './operations/get-all-pages'
 import getPage from './operations/get-page'
@@ -12,7 +13,7 @@ import getProduct from './operations/get-product'
 
 export interface LocalConfig extends CommerceAPIConfig {}
 const config: LocalConfig = {
-  commerceUrl: '',
+  commerceUrl: API_URL,
   apiToken: '',
   cartCookie: '',
   customerCookie: '',

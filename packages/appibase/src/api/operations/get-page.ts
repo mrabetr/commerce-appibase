@@ -7,6 +7,8 @@ export type PageVariables = {
 
 export default function getPageOperation() {
   function getPage(): Promise<GetPageResult> {
+    console.log('GETTING PAGE');
+
     return Promise.resolve({})
   }
   return getPage

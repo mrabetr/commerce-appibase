@@ -6,8 +6,10 @@ export type GetAllProductPathsResult = {
 
 export default function getAllProductPathsOperation() {
   function getAllProductPaths(): Promise<GetAllProductPathsResult> {
+    console.log('GETTING ALL PATHS');
+
     return Promise.resolve({
-      products: data.products.map(({ path }) => ({ path })),
+      products: [] //data.products.map(({ path }) => ({ path })),
     })
   }
 
