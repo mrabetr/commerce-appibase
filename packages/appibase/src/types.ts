@@ -25,6 +25,10 @@ export type Amount = {
   formatted: string
 }
 
+export type AppibasePrices = {
+  data: AppibasePrice[]
+}
+
 export type AppibasePrice = {
   id: number
   currency: string
@@ -69,6 +73,6 @@ export type AppibaseProduct = {
   children?: AppibaseProduct[]
   variations?: Variation[]
   variation_options?: VariationOption[]
-  prices: AppibasePrice[]
+  prices: AppibasePrices
   stock_items?: StockItem[]
 }

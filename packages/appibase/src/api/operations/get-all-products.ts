@@ -11,7 +11,7 @@ const normalizeProduct = (product: AppibaseProduct): Product => {
     description: product.description || "Description",
     images: product.image_urls.map(i => <ProductImage> { url: i }),
     variants: [],
-    price: { value: 22.22, retailPrice: 22.23, salePrice: 23.23, listPrice: 24.24, currencyCode: 'eur' },
+    price: { value: product.prices.data[0].amount.float, currencyCode: product.prices.data[0].currency },
     options: []
   }
 }

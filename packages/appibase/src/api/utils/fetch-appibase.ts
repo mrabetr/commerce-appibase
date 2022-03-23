@@ -14,7 +14,7 @@ const fetchApi: (getConfig: () => LocalConfig) => GraphQLFetcher =
 
 
     const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
-    api.headers.Authorization = "Bearer WVWUtQDOKQpHM-a8ZrOlyLh7m9OOkPDqiEFmwjOYRNg"
+    api.headers.Authorization = "Bearer RisXi4Jy_oOSIqwoQ8-1rOhZhMZy5HC_uX1W01m5JCo"
     
     const res = await api.get(query)
 
@@ -24,7 +24,7 @@ const fetchApi: (getConfig: () => LocalConfig) => GraphQLFetcher =
         status: res.status,
       })
     }
-    
+
     return { data: res.data, res }
   }
 
