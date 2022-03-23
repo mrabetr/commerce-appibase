@@ -2,19 +2,8 @@ import { Product, ProductImage } from '@vercel/commerce/types/product'
 import { GetAllProductsOperation } from '@vercel/commerce/types/product'
 import type { OperationContext } from '@vercel/commerce/api/operations'
 import type { LocalConfig, Provider } from '../index'
-import type { AppibaseProduct, AppibasePrice } from '../../types'
-
-const normalizeProduct = (product: AppibaseProduct): Product => {
-  return {
-    id: product.id,
-    name: product.name || "New name",
-    description: product.description || "Description",
-    images: product.image_urls.map(i => <ProductImage> { url: i }),
-    variants: [],
-    price: { value: product.prices.data[0].amount.float, currencyCode: product.prices.data[0].currency },
-    options: []
-  }
-}
+import { NormalizeProduct } from '../utils/normalize'
+import type { AppibaseProduct } from '../../types'
 
 export default function getAllProductsOperation({
   commerce,
@@ -32,10 +21,9 @@ export default function getAllProductsOperation({
 
     const { fetch } = commerce.getConfig(config)
 
-    
     const { data: fetchedProducts }  =  await fetch('/products?filter[is_parent_true]=true&include=prices');
 
-    const products = fetchedProducts.map((p : AppibaseProduct) => <Product> normalizeProduct(p))
+    const products = fetchedProducts.map((p : AppibaseProduct) => <Product> NormalizeProduct(p))
       
     return {
       products
