@@ -33,9 +33,9 @@ export default function getAllProductsOperation({
     const { fetch } = commerce.getConfig(config)
 
     
-    const { data: fetchedProducts} =  await fetch('/products?filter[is_parent_true]=false&filter[name_cont_all]=shirt,special&include=prices');
+    const { data: fetchedProducts }  =  await fetch('/products?filter[is_parent_true]=false&filter[name_cont_all]=shirt,special&include=prices');
 
-    const products = fetchedProducts.map(p => <Product> normalizeProduct(p))
+    const products = fetchedProducts.map((p : AppibaseProduct) => <Product> normalizeProduct(p))
       
     return {
       products

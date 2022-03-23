@@ -1,7 +1,6 @@
 import { Fetcher } from '@vercel/commerce/utils/types'
 import { API_URL } from './const'
 import { handleFetchResponse } from './utils'
-import URI from 'urijs'
 
 const fetcher: Fetcher = async ({
   method = 'GET',
@@ -9,10 +8,8 @@ const fetcher: Fetcher = async ({
   query
 }) => {
   const { locale, ...vars } = variables ?? {}
-  console.log('FETCHER Fetching');
 
-  const url = new URI(API_URL).resource(query)
-  console.log(url.toString());
+  const url = API_URL + query;
   
   return handleFetchResponse(
     await fetch(url.toString(), {

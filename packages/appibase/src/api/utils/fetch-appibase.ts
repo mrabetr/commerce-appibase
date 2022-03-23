@@ -1,41 +1,31 @@
 import { FetcherError } from '@vercel/commerce/utils/errors'
 import type { GraphQLFetcher } from '@vercel/commerce/api'
-import JsonApiResponseConverter from 'json-api-response-converter'
-import URI from 'urijs'
+import Kitsu from "kitsu";
+
 import type { LocalConfig } from '../index'
 import fetch from './fetch'
 import { API_URL } from '../../const'
+const api = new Kitsu()
 
 const fetchApi: (getConfig: () => LocalConfig) => GraphQLFetcher =
   (getConfig) =>
   async (query: string, { variables, preview } = {}, fetchOptions) => {
     const config = getConfig()
 
-    const uri = (new URI(API_URL).resource('/api/v1' + query)).toString();
-    
-    const headers = new Headers();
-    headers.append("Authorization", "Bearer 4e8wTDm0lns6YD92eR0keClRL11aQDYE5t1wNKRBBgQ");
-    headers.append("Content-Type", "application/json");
 
+    const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
+    api.headers.Authorization = "Bearer WVWUtQDOKQpHM-a8ZrOlyLh7m9OOkPDqiEFmwjOYRNg"
+    
+    const res = await api.get(query)
 
-    const res = await fetch(uri, {
-      method: 'GET',
-      headers
-    })
-    
-    const json = await res.json()
-    
-    if (json.errors) {
+    if (res.errors) {
       throw new FetcherError({
-        errors: json.errors ?? [{ message: 'Failed to fetch for API' }],
+        errors: res.errors ?? [{ message: 'Failed to fetch for API' }],
         status: res.status,
       })
     }
-
-    const data = new JsonApiResponseConverter(json).formattedResponse
-    console.log(data);
     
-    return { data, res }
+    return { data: res.data, res }
   }
 
 export default fetchApi
