@@ -1,5 +1,6 @@
 import { Product, ProductImage } from '@vercel/commerce/types/product'
-import type { AppibaseProduct } from '../../types'
+import { Category } from '@vercel/commerce/types/site'
+import type { AppibaseProduct, AppibaseCollection } from '../../types'
 
 
 const NormalizeProduct = (product: AppibaseProduct): Product => {
@@ -16,4 +17,13 @@ const NormalizeProduct = (product: AppibaseProduct): Product => {
   }
 }
 
-export { NormalizeProduct }
+const NormalizeCategory = (collection: AppibaseCollection): Category => {
+  return {
+    id: collection.id,
+    name: collection.name,
+    slug: collection.slug,
+    path: '/' + collection.slug,
+  }
+}
+
+export { NormalizeProduct, NormalizeCategory }

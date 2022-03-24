@@ -73,3 +73,19 @@ export type AppibaseProduct = {
   prices: AppibasePrices
   stock_items?: StockItem[]
 }
+
+export type AppibaseCollection = {
+  id: string,
+  type: string,
+  // links: { self: 'https://appibase.com/71/api/v1/collections/featured' },
+  // parent: { links: [Object] },
+  // children: { links: [Object] },
+  // products: { links: [Object] },
+  name: string,
+  description: string,
+  slug: string,
+  image_url: string,
+  is_parent: boolean,
+  active: boolean,
+  livemode: boolean
+}

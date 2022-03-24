@@ -1,6 +1,8 @@
 import { OperationContext } from '@vercel/commerce/api/operations'
 import { Category } from '@vercel/commerce/types/site'
+import { NormalizeCategory } from '../utils/normalize'
 import { LocalConfig } from '../index'
+import { AppibaseCollection } from 'types'
 
 export type GetSiteInfoResult<
   T extends { categories: any[]; brands: any[] } = {
@@ -9,34 +11,25 @@ export type GetSiteInfoResult<
   }
 > = T
 
-export default function getSiteInfoOperation({}: OperationContext<any>) {
-  function getSiteInfo({
+export default function getSiteInfoOperation({ commerce }: OperationContext<any>) {
+  async function getSiteInfo({
     query,
     variables,
-    config: cfg,
+    config,
   }: {
     query?: string
     variables?: any
     config?: Partial<LocalConfig>
     preview?: boolean
   } = {}): Promise<GetSiteInfoResult> {
-    console.log('GETTING SITE INFO');
 
+    const { fetch } = commerce.getConfig(config)
+
+    const { res : { data } } =  await fetch('/collections');
+    const categories = data.map((p : AppibaseCollection) => <Category> NormalizeCategory(p))
+    
     return Promise.resolve({
-      categories: [
-        {
-          id: 'new-arrivals',
-          name: 'New Arrivals',
-          slug: 'new-arrivals',
-          path: '/new-arrivals',
-        },
-        {
-          id: 'featured',
-          name: 'Featured',
-          slug: 'featured',
-          path: '/featured',
-        },
-      ],
+      categories,
       brands: [],
     })
   }
