@@ -19,7 +19,7 @@ const NormalizeProduct = (product: AppibaseProduct): Product => {
 
 const NormalizeCategory = (collection: AppibaseCollection): Category => {
   return {
-    id: collection.id,
+    id: String(collection.id),
     name: collection.name,
     slug: collection.slug,
     path: '/' + collection.slug,

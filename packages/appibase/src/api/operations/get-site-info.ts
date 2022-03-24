@@ -2,7 +2,7 @@ import { OperationContext } from '@vercel/commerce/api/operations'
 import { Category } from '@vercel/commerce/types/site'
 import { NormalizeCategory } from '../utils/normalize'
 import { LocalConfig } from '../index'
-import { AppibaseCollection } from 'types'
+import { AppibaseCollection } from '../../types'
 
 export type GetSiteInfoResult<
   T extends { categories: any[]; brands: any[] } = {

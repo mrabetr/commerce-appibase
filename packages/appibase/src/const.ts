@@ -1,5 +1,4 @@
-export const API_URL = `https://api.appibase.com`
-export const APPIBASE_URL = `https://appibase.com`
+export const API_URL = `https://appibase.com`
 
 export const SCOPE = `storefront client`
 

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import Kitsu from "kitsu";
-import { APPIBASE_URL, SCOPE, CLIENT_ID_STOREFRONT } from '../../const'
+import { API_URL, SCOPE, CLIENT_ID_STOREFRONT } from '../../const'
 
 const GetAccessToken = async () => {
 
@@ -22,7 +22,7 @@ const GetAccessToken = async () => {
       body: urlencoded,
     };
 
-    const response = await fetch(APPIBASE_URL + "/oauth/token", requestOptions)
+    const response = await fetch(API_URL + "/oauth/token", requestOptions)
     const { access_token, expires_in } = await response.json()
     
     Cookies.set('access_token', access_token, { expires: expires_in / 60 / 60 / 24 })
