@@ -17,9 +17,8 @@ export default function getProductOperation({
     config?: Partial<LocalConfig>
     preview?: boolean
   } = {}): Promise<Product | {} | any> {
-
     const { fetch } = commerce.getConfig(config)
-    const { data: fetchedProduct }  =  await fetch(`/products/${258}?include=products,variations,options,prices,stock_items`);
+    const { data: fetchedProduct }  =  await fetch(`/products/${variables?.slug}?include=products,variations,options,prices,stock_items`);
 
     return {
       product: NormalizeProduct(fetchedProduct),

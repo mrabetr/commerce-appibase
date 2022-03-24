@@ -53,14 +53,11 @@ export type StockItem = {
   product?: AppibaseProduct
 }
 
-export type AppibaseProductAttributes = {
-  
-}
-
 export type AppibaseProduct = {
   id: string
   name: string
   description: string
+  slug: string
   sku: string
   category: string
   vendor: string
