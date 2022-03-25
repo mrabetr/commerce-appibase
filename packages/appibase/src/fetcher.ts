@@ -1,30 +1,22 @@
 import { Fetcher } from '@vercel/commerce/utils/types'
 import { API_URL } from './const'
 import { handleFetchResponse } from './utils'
+import { GetAccessToken } from './api/utils/access-token'
+import Kitsu from "kitsu";
 
 const fetcher: Fetcher = async ({
   method = 'GET',
   variables,
-  query
+  query = ''
 }) => {
   const { locale, ...vars } = variables ?? {}
   
-  const url = API_URL + "/api/v1" + query;
-  console.log('UI FETCHER', query, url);
+  console.log('UI FETCHER', query);
+
+  const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
+  api.headers.Authorization = `Bearer ${await GetAccessToken()}`
   
-  return handleFetchResponse(
-    await fetch(url.toString(), {
-      method,
-      //body: JSON.stringify({ query, variables: vars }),
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE',
-        'Access-Control-Expose-Headers': 'Authorization, Accept, Content-Type',
-        'Authorization': ``,
-        'Content-Type': 'application/json',
-      },
-    })
-  )
+  return await api.get(query)
 }
 
 export default fetcher
