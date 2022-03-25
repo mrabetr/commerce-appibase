@@ -36,7 +36,7 @@ export const handler: SWRHook<any> = {
       method: options.method,
     })
 
-    return { products: response.data.map((p : AppibaseProduct) => NormalizeProduct(p) ) }
+    return { found: response.data.length, products: response.data.map((p : AppibaseProduct) => NormalizeProduct(p) ) }
   },
   useHook:
     ({ useData }) =>
