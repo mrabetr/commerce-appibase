@@ -57,6 +57,14 @@ export type AppibaseVariations = {
   data: AppibaseVariation[]
 }
 
+export type AppibaseProductChildren = {
+  data: AppibaseProduct[]
+}
+
+export type AppibaseVariationOptions = {
+  data: AppibaseVariationOption[]
+}
+
 export type AppibaseProduct = {
   id: string
   name: string
@@ -71,9 +79,9 @@ export type AppibaseProduct = {
   active: boolean
   livemode: boolean
   parent?: AppibaseProduct
-  children?: AppibaseProduct[]
+  children?: AppibaseProductChildren
   variations?: AppibaseVariations
-  variation_options?: AppibaseVariationOption[]
+  variation_options?: AppibaseVariationOptions
   prices: AppibasePrices
   stock_items?: StockItem[]
 }

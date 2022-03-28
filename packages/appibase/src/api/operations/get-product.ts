@@ -20,8 +20,6 @@ export default function getProductOperation({
     const { fetch } = commerce.getConfig(config)
     const { data: fetchedProduct }  =  await fetch(`/products/${variables?.slug}?include=products,variations,options,prices,stock_items,variations.variation_options`);
     
-  console.log(fetchedProduct);
-
     return {
       product: NormalizeProduct(fetchedProduct),
     }

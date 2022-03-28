@@ -23,12 +23,11 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
-  }, [product])
-
-  console.log(product.options, product.variants);
-  
+  }, [product])  
 
   const variant = getProductVariant(product, selectedOptions)
+  console.log(product, selectedOptions, variant);
+
   const addToCart = async () => {
     setLoading(true)
     try {
