@@ -24,7 +24,7 @@ export default function getAllProductsOperation({
     console.log(query, variables);
     
 
-    const { data: fetchedProducts }  =  await fetch('/products?filter[is_parent_true]=true&include=prices');
+    const { data: fetchedProducts }  =  await fetch('/products?filter[is_parent_true]=true&include=prices,options');
 
     const products = fetchedProducts.map((p : AppibaseProduct) => <Product> NormalizeProduct(p))
       
