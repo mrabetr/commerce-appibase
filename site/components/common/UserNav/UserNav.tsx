@@ -23,8 +23,6 @@ const UserNav: React.FC<{
 }> = ({ className }) => {
   const { data } = useCart()
 
-  console.log('cart', data );
-  
   const { data: isCustomerLoggedIn } = useCustomer()
   const {
     toggleSidebar,

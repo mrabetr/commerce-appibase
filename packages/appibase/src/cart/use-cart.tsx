@@ -12,8 +12,6 @@ export const handler: SWRHook<any> = {
     query: ''
   },
   async fetcher({ fetch }) {
-    console.log('getting cart');
-
     const fromCookies = Cookies.get('cart_id');
 
     if(!fromCookies) {
@@ -33,15 +31,10 @@ export const handler: SWRHook<any> = {
   useHook:
     ({ useData }) =>
     (input) => {
-      console.log('use-cart hook');
-
       const response = useData({
         swrOptions: { revalidateOnFocus: false, ...input?.swrOptions },
       })
 
-      // console.log(response.data);
-      
-      
       return useMemo(
         () =>
           Object.create(response, {

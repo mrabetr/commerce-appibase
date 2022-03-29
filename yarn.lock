@@ -2809,6 +2809,15 @@ dependency-graph@^0.11.0:
   resolved "https://registry.yarnpkg.com/dependency-graph/-/dependency-graph-0.11.0.tgz#ac0ce7ed68a54da22165a85e97a01d53f5eb2e27"
   integrity sha512-JeMq7fEshyepOWDfcfHK06N3MhyPhz++vtqWhMT5O9A3K42rdsEDpfdVqjaqaAhsw6a+ZqeDvQVtD0hFHQWrzg==
 
+deserialize-json-api@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/deserialize-json-api/-/deserialize-json-api-1.4.0.tgz#776df0d56db1cab420d1d58e7b3d916f0140fda8"
+  integrity sha512-rfViAb34ATDUygZwuU8VSi/FC1T5m+eIAjPiTwcuwCvf3V6uWdnKSYZ1Y8myHW9RCKPhnBKMHp/3ZVF/uEZISQ==
+  dependencies:
+    lodash.camelcase "^4.3.0"
+    lodash.isarray "^4.0.0"
+    lodash.isplainobject "^4.0.6"
+
 detect-indent@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-6.1.0.tgz#592485ebbbf6b3b1ab2be175c8393d04ca0d57e6"
@@ -4729,6 +4738,11 @@ lodash.includes@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
   integrity sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=
+
+lodash.isarray@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-4.0.0.tgz#2aca496b28c4ca6d726715313590c02e6ea34403"
+  integrity sha1-KspJayjEym1yZxUxNZDALm6jRAM=
 
 lodash.isboolean@^3.0.3:
   version "3.0.3"

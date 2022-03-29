@@ -12,11 +12,11 @@ const fetcher: Fetcher = async ({
 }) => {
   const { locale, ...vars } = variables ?? {}
   
-  console.log('UI FETCHER', query);
+  console.log('UI FETCHER', query, body);
 
-  const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
+  const api = new Kitsu({ baseURL: API_URL + '/api/v1', camelCaseTypes: false, pluralize: false })
   api.headers.Authorization = `Bearer ${await GetAccessToken()}`
-
+  
   if(method === 'GET') return await api.get(query)
   else if(method === 'POST') return await api.create(query, body)
 }

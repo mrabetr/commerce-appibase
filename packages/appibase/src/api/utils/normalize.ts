@@ -50,7 +50,7 @@ const NormalizeCategory = (collection: AppibaseCollection): Category => {
 }
 
 const NormalizeCart = (cart: AppibaseCart): Cart => {
-  console.log(cart);
+  // console.log(cart);
   
   return {
     id: String(cart.id),
