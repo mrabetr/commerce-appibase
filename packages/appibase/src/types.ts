@@ -99,3 +99,34 @@ export type AppibaseCollection = {
   children?: AppibaseCollection[]
   products?: AppibaseProduct[]
 }
+
+export type AppibaseCartItems = {
+  data: AppibaseCartItem[]
+}
+
+export type AppibaseCart = {
+  id: string
+  guest: boolean
+  email: string
+  currency: string
+  tax_incl: boolean
+  tax_rate: number
+  subtotal_amount: Amount
+  shipping_amount: Amount
+  tax_amount: Amount
+  total_amount: Amount
+  cart_items: AppibaseCartItems
+}
+
+export type AppibaseCartItem = {
+  id: string
+  name: string
+  description: string
+  sku: string
+  image_url: string
+  quantity: string
+  currency: string
+  price: Amount
+  original_price: Amount
+  subtotal_amount: Amount
+}

@@ -7,7 +7,8 @@ import Kitsu from "kitsu";
 const fetcher: Fetcher = async ({
   method = 'GET',
   variables,
-  query = ''
+  query = '',
+  body = {}
 }) => {
   const { locale, ...vars } = variables ?? {}
   
@@ -15,8 +16,9 @@ const fetcher: Fetcher = async ({
 
   const api = new Kitsu({ baseURL: API_URL + '/api/v1' })
   api.headers.Authorization = `Bearer ${await GetAccessToken()}`
-  
-  return await api.get(query)
+
+  if(method === 'GET') return await api.get(query)
+  else if(method === 'POST') return await api.create(query, body)
 }
 
 export default fetcher

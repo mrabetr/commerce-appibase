@@ -1,8 +1,6 @@
 import { SWRHook } from '@vercel/commerce/utils/types'
-import { Product } from '@vercel/commerce/types/product'
 import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 export default useSearch as UseSearch<typeof handler>
-import { API_URL } from '../const'
 import type { AppibaseProduct } from '../types'
 import { NormalizeProduct } from '../api/utils/normalize'
 
@@ -20,7 +18,6 @@ export const handler: SWRHook<any> = {
     method: 'GET',
   },
   async fetcher({ input: { search, categoryId, brandId, sort }, options, fetch }) {
-    console.log('*********** USE SEARCH FETCH');
     let url = options.url
 
     if (search) url += `&filter[name_cont_all]=${search}`
@@ -41,8 +38,6 @@ export const handler: SWRHook<any> = {
   useHook:
     ({ useData }) =>
     (input = {}) => {
-      console.log('USE SEARCH HOOK', input);
-      
       return useData({
         input: [
           ['search', input.search],

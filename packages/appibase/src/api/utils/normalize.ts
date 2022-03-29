@@ -1,6 +1,7 @@
 import { Product, ProductOption, ProductImage } from '@vercel/commerce/types/product'
 import { Category } from '@vercel/commerce/types/site'
-import type { AppibaseProduct, AppibaseCollection } from '../../types'
+import type { Cart, LineItem } from '@vercel/commerce/types/Cart'
+import type { AppibaseProduct, AppibaseCollection, AppibaseCart } from '../../types'
 
 
 const NormalizeProduct = (product: AppibaseProduct): Product => {
@@ -48,4 +49,38 @@ const NormalizeCategory = (collection: AppibaseCollection): Category => {
   }
 }
 
-export { NormalizeProduct, NormalizeCategory }
+const NormalizeCart = (cart: AppibaseCart): Cart => {
+  console.log(cart);
+  
+  return {
+    id: String(cart.id),
+    createdAt: (new Date()).toDateString(),
+    currency: {
+      code: cart.currency
+    },
+    taxesIncluded: cart.tax_incl,
+    lineItemsSubtotalPrice: cart.subtotal_amount.float,
+    subtotalPrice: cart.subtotal_amount.float,
+    totalPrice: cart.total_amount.float,
+    lineItems: cart.cart_items?.data.map(i => <LineItem> ({
+      id: i.id,
+      variantId: i.id,
+      productId: i.id,
+      name: i.name,
+      discounts: [],
+      path: i.sku,
+      variant: {
+        sku: i.sku,
+        id: i.id,
+        name: i.name,
+        requiresShipping: true,
+        price: i.price.float,
+        listPrice: i.price.float,
+        image: { url: i.image_url }
+      },
+      quantity: parseInt(i.quantity)
+    })) || []
+  }
+}
+
+export { NormalizeProduct, NormalizeCategory, NormalizeCart }
