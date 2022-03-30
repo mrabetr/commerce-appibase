@@ -32,7 +32,7 @@ export const handler: SWRHook<any> = {
     ({ useData }) =>
     (input) => {
       const response = useData({
-        swrOptions: { revalidateOnFocus: false, ...input?.swrOptions },
+        swrOptions: { revalidateOnFocus: true, ...input?.swrOptions },
       })
 
       return useMemo(

@@ -13,7 +13,7 @@ export const handler: MutationHook<any> = {
 
     const fromCookies = Cookies.get('cart_id');
     
-    const { data } = await fetch({
+    await fetch({
       query : `/carts/${fromCookies}/cart_items`,
       method: 'POST',
       body: {
@@ -26,8 +26,7 @@ export const handler: MutationHook<any> = {
         }
       }
     })
-    
-    return NormalizeCart(data)
+    return;
   },
   useHook:
     ({ fetch }) =>

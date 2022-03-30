@@ -3,6 +3,9 @@ import { useCallback } from 'react'
 import useUpdateItem, {
   UseUpdateItem,
 } from '@vercel/commerce/cart/use-update-item'
+import { NormalizeCart } from '../api/utils/normalize'
+import Cookies from 'js-cookie'
+import useCart from './use-cart'
 
 export default useUpdateItem as UseUpdateItem<any>
 
@@ -20,13 +23,23 @@ export const handler: MutationHook<any> = {
         quantity: String(input.quantity)
       }
     })
+
+    const fromCookies = Cookies.get('cart_id');
+    const { data } = await fetch({ query : `/carts/${fromCookies}?include=cart_items` })
+    return NormalizeCart(data)
+    
   },
   useHook:
     ({ fetch }) =>
     ({ item }) => {
+      const { mutate } = useCart()
+
       return useCallback(async function updateItem(input) {
         const data = await fetch({ input: { item, quantity: input.quantity } });
+
+        await mutate(data, true)
+        
         return data;
-      }, [fetch]);
+      }, [fetch, mutate]);
     },
 }

@@ -58,7 +58,7 @@ const NormalizeCart = (cart: AppibaseCart): Cart => {
     lineItemsSubtotalPrice: cart.subtotal_amount.float,
     subtotalPrice: cart.subtotal_amount.float,
     totalPrice: cart.total_amount.float,
-    lineItems: cart.cart_items?.data.map(i => <LineItem> ({
+    lineItems: cart.cart_items?.data.map(i => ({
       id: i.id,
       variantId: i.id,
       productId: i.id,
