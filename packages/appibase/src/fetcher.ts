@@ -8,7 +8,7 @@ const fetcher: Fetcher = async ({
   method = 'GET',
   variables,
   query = '',
-  body = {}
+  body
 }) => {
   const { locale, ...vars } = variables ?? {}
   
@@ -19,6 +19,8 @@ const fetcher: Fetcher = async ({
   
   if(method === 'GET') return await api.get(query)
   else if(method === 'POST') return await api.create(query, body)
+  else if(method === 'DELETE') return await api.remove(query, body)
+  else if(method === 'PATCH') return await api.update(query, body)
 }
 
 export default fetcher

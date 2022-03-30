@@ -10,20 +10,14 @@ export const handler: MutationHook<any> = {
     query: '',
   },
   async fetcher({ input: item, options, fetch }) {
-    console.log('item', item);
-    
-    // if (item.quantity && (!Number.isInteger(item.quantity) || item.quantity < 1)) {
-    //   throw new Error('The item quantity has to be a valid integer greater than 0');
-    // }
 
     const fromCookies = Cookies.get('cart_id');
-    console.log('fromCookies', fromCookies);
     
     const { data } = await fetch({
       query : `/carts/${fromCookies}/cart_items`,
       method: 'POST',
       body: {
-        quantity: 2,
+        quantity: 1,
         item: { 
           data : { 
             type: 'product', 
@@ -39,11 +33,7 @@ export const handler: MutationHook<any> = {
     ({ fetch }) =>
     () => {
       return useCallback(async function addItem(input) {
-        const data = await fetch({
-            input
-        });
-        // console.log('data', data, input);
-        
+        const data = await fetch({ input });
         return data;
       }, [fetch]);
     },

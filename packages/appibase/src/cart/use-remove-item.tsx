@@ -1,4 +1,5 @@
 import { MutationHook } from '@vercel/commerce/utils/types'
+import { useCallback } from 'react'
 import useRemoveItem, {
   UseRemoveItem,
 } from '@vercel/commerce/cart/use-remove-item'
@@ -9,12 +10,19 @@ export const handler: MutationHook<any> = {
   fetchOptions: {
     query: '',
   },
-  async fetcher({ input, options, fetch }) {},
+  async fetcher({ input: item, options, fetch }) {
+    await fetch({
+      query : `cart_items`,
+      method: 'DELETE',
+      body: item.id
+    })
+  },
   useHook:
     ({ fetch }) =>
     () => {
-      return async function removeItem(input) {
-        return {}
-      }
+      return useCallback(async function removeItem(input) {
+        const data = await fetch({ input });
+        return data;
+      }, [fetch]);
     },
 }
