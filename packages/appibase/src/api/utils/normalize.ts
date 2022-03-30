@@ -5,8 +5,6 @@ import type { AppibaseProduct, AppibaseCollection, AppibaseCart } from '../../ty
 
 
 const NormalizeProduct = (product: AppibaseProduct): Product => {
-  // console.log(JSON.stringify(product, null , 4));
-
   const options: ProductOption[] = [];
 
   for(const variation of (product.variations?.data || [])) {
@@ -50,8 +48,6 @@ const NormalizeCategory = (collection: AppibaseCollection): Category => {
 }
 
 const NormalizeCart = (cart: AppibaseCart): Cart => {
-  // console.log(cart);
-  
   return {
     id: String(cart.id),
     createdAt: (new Date()).toDateString(),

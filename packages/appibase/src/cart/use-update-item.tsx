@@ -14,7 +14,11 @@ export const handler: MutationHook<any> = {
     await fetch({
       query : `cart_items`,
       method: 'PATCH',
-      body: { id: input.item.id, type: 'cart_item', quantity: String(input.quantity) }
+      body: { 
+        id: input.item.id,
+        type: 'cart_item',
+        quantity: String(input.quantity)
+      }
     })
   },
   useHook:

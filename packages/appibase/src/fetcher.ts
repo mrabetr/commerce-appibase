@@ -12,8 +12,6 @@ const fetcher: Fetcher = async ({
 }) => {
   const { locale, ...vars } = variables ?? {}
   
-  console.log('UI FETCHER', query, body);
-
   const api = new Kitsu({ baseURL: API_URL + '/api/v1', camelCaseTypes: false, pluralize: false })
   api.headers.Authorization = `Bearer ${await GetAccessToken()}`
   
