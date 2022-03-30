@@ -1,6 +1,6 @@
 import { Product, ProductOption, ProductImage } from '@vercel/commerce/types/product'
 import { Category } from '@vercel/commerce/types/site'
-import type { Cart, LineItem } from '@vercel/commerce/types/Cart'
+import { Cart, LineItem } from '@vercel/commerce/types/cart'
 import type { AppibaseProduct, AppibaseCollection, AppibaseCart } from '../../types'
 
 
